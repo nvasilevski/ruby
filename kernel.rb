@@ -71,6 +71,26 @@ module Kernel
 
   #
   #  call-seq:
+  #     obj.instance_of?(class)    -> true or false
+  #
+  #  Returns <code>true</code> if <i>obj</i> is an instance of the given
+  #  class. See also Object#kind_of?.
+  #
+  #     class A;     end
+  #     class B < A; end
+  #     class C < B; end
+  #
+  #     b = B.new
+  #     b.instance_of? A   #=> false
+  #     b.instance_of? B   #=> true
+  #     b.instance_of? C   #=> false
+  #
+  def instance_of?(klass)
+    Primitive.cexpr! 'rb_obj_is_instance_of(self, klass)'
+  end
+
+  #
+  #  call-seq:
   #     obj.tap {|x| block }    -> obj
   #
   #  Yields self to the block, and then returns self.

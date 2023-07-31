@@ -4464,7 +4464,6 @@ InitVM_Object(void)
     rb_define_method(rb_mKernel, "remove_instance_variable",
                      rb_obj_remove_instance_variable, 1); /* in variable.c */
 
-    rb_define_method(rb_mKernel, "instance_of?", rb_obj_is_instance_of, 1);
     rb_define_method(rb_mKernel, "kind_of?", rb_obj_is_kind_of, 1);
     rb_define_method(rb_mKernel, "is_a?", rb_obj_is_kind_of, 1);
 
