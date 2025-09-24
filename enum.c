@@ -3025,9 +3025,17 @@ each_with_index_i(RB_BLOCK_CALL_FUNC_ARGLIST(_, index))
 static VALUE
 enum_each_with_index(int argc, VALUE *argv, VALUE obj)
 {
+    VALUE offset = INT2FIX(0);
+    
     RETURN_SIZED_ENUMERATOR(obj, argc, argv, enum_size);
 
-    rb_block_call(obj, id_each, argc, argv, each_with_index_i, INT2FIX(0));
+    if (argc > 0) {
+        offset = argv[0];
+        argc--;
+        argv++;
+    }
+
+    rb_block_call(obj, id_each, argc, argv, each_with_index_i, offset);
     return obj;
 }
 
